@@ -521,6 +521,46 @@
 
     .skill-pill:hover { border-color: var(--teal); color: var(--teal); }
 
+    /* ── TOOLS ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .tool-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .tool-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .tool-cat {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+    }
+
     /* ── CONTACT ── */
     .contact-wrapper {
       display: grid;
@@ -671,6 +711,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certs">Certs</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#tools">Tools</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -834,14 +875,7 @@
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-icon">&#128205;</div>
-      <div class="project-title">Tal3aat App</div>
-      <p class="project-desc">Place-discovery application concept designed to help users find and share culturally relevant locations. Side project combining mobile UX design with backend planning and API integration concepts.</p>
-      <div class="project-tags">
-        <span class="tag">App Design</span><span class="tag">UX</span><span class="tag">API</span>
-      </div>
-    </div>
+
 
   </div>
 </section>
@@ -1025,9 +1059,110 @@
   </div>
 </section>
 
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-label">// 06 &nbsp; Tools & Platforms</div>
+  <h2 class="section-title">Arsenal</h2>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128270;</div>
+      <div class="tool-name">Wireshark</div>
+      <div class="tool-cat">Packet Analysis</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#127758;</div>
+      <div class="tool-name">Nmap</div>
+      <div class="tool-cat">Network Recon</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128029;</div>
+      <div class="tool-name">Kali Linux</div>
+      <div class="tool-cat">Pentesting OS</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128737;</div>
+      <div class="tool-name">Metasploit</div>
+      <div class="tool-cat">Exploitation</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128247;</div>
+      <div class="tool-name">FTK Imager</div>
+      <div class="tool-cat">Forensic Imaging</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128269;</div>
+      <div class="tool-name">Nessus</div>
+      <div class="tool-cat">Vulnerability Scan</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128274;</div>
+      <div class="tool-name">Burp Suite</div>
+      <div class="tool-cat">Web App Testing</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128196;</div>
+      <div class="tool-name">FTK Toolkit</div>
+      <div class="tool-cat">Digital Forensics</div>
+    </div>
+
+
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128295;</div>
+      <div class="tool-name">Gobuster</div>
+      <div class="tool-cat">Directory Brute-force</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128187;</div>
+      <div class="tool-name">Nikto</div>
+      <div class="tool-cat">Web Scanner</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128640;</div>
+      <div class="tool-name">Python</div>
+      <div class="tool-cat">Scripting & Automation</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128249;</div>
+      <div class="tool-name">Packet Tracer</div>
+      <div class="tool-cat">Network Simulation</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#127959;</div>
+      <div class="tool-name">VMware</div>
+      <div class="tool-cat">Virtualization</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128260;</div>
+      <div class="tool-name">Docker</div>
+      <div class="tool-cat">Containerization</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">&#128203;</div>
+      <div class="tool-name">Active Directory</div>
+      <div class="tool-cat">IAM / Windows</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">// 06 &nbsp; Contact</div>
+  <div class="section-label">// 07 &nbsp; Contact</div>
   <h2 class="section-title">Get In Touch</h2>
   <div class="contact-wrapper">
     <div>

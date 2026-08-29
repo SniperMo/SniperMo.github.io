@@ -392,6 +392,14 @@
       margin-bottom: 1rem;
     }
 
+    .project-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
     .project-title {
       font-size: 1rem;
       font-weight: 600;
@@ -561,6 +569,44 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: var(--accent); }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-school {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+
+    .edu-detail {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     /* ── CONTACT ── */
     .contact-wrapper {
       display: grid;
@@ -689,6 +735,7 @@
       section { padding: 4rem 1.25rem; }
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
       .about-grid { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
       .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
       .tl-date { font-size: 0.7rem; }
       .contact-wrapper { grid-template-columns: 1fr; }
@@ -712,19 +759,20 @@
     <li><a href="#certs">Certs</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#tools">Tools</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow">SANS Cybersecurity Fellow &nbsp;·&nbsp; GSEC Candidate</div>
+  <div class="hero-eyebrow">SANS Cybersecurity Fellow &nbsp;·&nbsp; GSEC · GFACT Certified</div>
   <h1>Mohamed<br /><span>Abdelkader</span></h1>
   <p class="hero-tagline">
-    // Cybersecurity Analyst &nbsp;·&nbsp; AI Data Trainer &nbsp;·&nbsp; Bothell, WA &nbsp;·&nbsp; Open to Relocation
+    // SOC Analyst &nbsp;·&nbsp; Incident Responder &nbsp;·&nbsp; Threat Intelligence Analyst &nbsp;·&nbsp; Bothell, WA &nbsp;·&nbsp; Open to Relocation
   </p>
   <p class="hero-bio">
-    Cybersecurity professional with hands-on experience in SOC operations, threat intelligence, digital forensics, and AI model training. GIAC-certified (GFACT), actively pursuing GSEC and GCIH. Built a Python/LLM threat-intelligence pipeline at Pacific Northwest National Laboratory mapping adversary behavior to MITRE ATT&CK.
+    GIAC-certified cybersecurity professional (GSEC, GFACT) with hands-on lab and research experience across threat intelligence, digital forensics, incident response, and network security. Completed a DOE SULI internship at Pacific Northwest National Laboratory, structuring cyber threat intelligence and mapping adversary TTPs to MITRE ATT&CK for hybrid attack-graph modeling. GCIH planned for late 2026.
   </p>
   <div class="hero-cta">
     <a href="mailto:Yrmabdelkader@gmail.com" class="btn-primary">&#9993; Get In Touch</a>
@@ -737,12 +785,12 @@
       <div class="stat-label">Certifications</div>
     </div>
     <div class="stat-item">
-      <span class="stat-number" data-target="5">0</span>
-      <div class="stat-label">Projects</div>
+      <span class="stat-number" data-target="4">0</span>
+      <div class="stat-label">Security Projects</div>
     </div>
     <div class="stat-item">
-      <span class="stat-number" data-target="3">0</span>
-      <div class="stat-label">Years Experience</div>
+      <span class="stat-number">GSEC</span>
+      <div class="stat-label">Earned 2026</div>
     </div>
     <div class="stat-item">
       <span class="stat-number">SOC</span>
@@ -757,8 +805,8 @@
   <h2 class="section-title">Background</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a cybersecurity professional based in <strong>Bothell, WA</strong>, transitioning from a background in sales and marketing across technology, medical products, and real estate into the security field. That cross-industry experience sharpened my ability to translate complex technical findings into clear business risk narratives.</p>
-      <p>I hold an <strong>AAS in Cyber Defense and Digital Forensics</strong> from Edmonds College and a <strong>B.S. in Information Technology</strong> from Suez Canal University. As a <strong>SANS Fellow</strong>, I earned GFACT and am actively building toward GSEC (exam July 2025) and GCIH.</p>
+      <p>I'm a GIAC-certified cybersecurity professional based in <strong>Bothell, WA</strong>, with hands-on lab and research experience across threat intelligence, digital forensics, incident response, and network security. I transitioned into security from a background in enterprise accounts and IT sales, which sharpened my ability to translate complex technical findings into clear business risk narratives.</p>
+      <p>I hold an <strong>AAS in Cyber Defense and Digital Forensics</strong> from Edmonds College and a <strong>B.S. in Computer Science</strong> from Suez Canal University. As a <strong>SANS Fellow</strong>, I earned <strong>GFACT (2025)</strong> and <strong>GSEC (2026)</strong> after completing SEC401, with <strong>GCIH</strong> planned for late 2026.</p>
       <p>My work at <strong>Pacific Northwest National Laboratory</strong> as a DOE SULI intern involved building a Python and LLM pipeline for threat intelligence mapping on the HAGEN project, directly connecting adversary TTPs to MITRE ATT&CK. That experience anchors my approach: rigorous, evidence-based, and automation-forward.</p>
     </div>
     <div class="about-meta">
@@ -768,11 +816,11 @@
       </div>
       <div class="meta-item">
         <div class="meta-key">Education</div>
-        <div class="meta-val">AAS Cyber Defense, Edmonds College<br />B.S. Information Technology, Suez Canal University</div>
+        <div class="meta-val">AAS Cyber Defense &amp; Digital Forensics, Edmonds College<br />B.S. Computer Science, Suez Canal University</div>
       </div>
       <div class="meta-item">
         <div class="meta-key">Current Focus</div>
-        <div class="meta-val">GSEC Exam Prep &nbsp;·&nbsp; SOC Analyst Roles<br />AI Model Training at Handshake Software</div>
+        <div class="meta-val">SOC Analyst &amp; Incident Response Roles<br />AI Data Training &amp; Security QA at Handshake Software</div>
       </div>
       <div class="meta-item">
         <div class="meta-key">Contact</div>
@@ -794,38 +842,64 @@
         <span class="tl-badge">CURRENT</span>
       </div>
       <div>
-        <div class="tl-role">AI Data Trainer</div>
-        <div class="tl-org">Handshake Software &nbsp;·&nbsp; Remote, San Francisco CA</div>
+        <div class="tl-role">Cybersecurity Fellow</div>
+        <div class="tl-org">SANS Technology Institute &nbsp;·&nbsp; Remote</div>
         <ul class="tl-desc">
-          <li>Training AI models to improve output accuracy, security reliability, and data integrity across cybersecurity-related tasks.</li>
-          <li>Evaluating model responses against established security frameworks and real-world threat scenarios.</li>
-          <li>Contributing to dataset quality assurance pipelines for domain-specific AI fine-tuning.</li>
+          <li>Earned GSEC (2026) after completing SEC401: enterprise log management and SIEM operations, defense in depth, network segmentation, Windows and Linux hardening, PowerShell automation, cryptography and PKI, IAM and access control, digital forensics, malware analysis, and web application security.</li>
+          <li>Earned GFACT (2025); GCIH planned for late 2026, aligning the certification stack to the SOC and incident response track.</li>
+          <li>Completed lab work in penetration testing methodology, Wireshark traffic analysis, and adversary simulation with Kali Linux tooling.</li>
         </ul>
       </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-date">PNNL SULI Internship<br />2024</div>
+      <div class="tl-date">
+        Jan 2026 – Present<br />
+        <span class="tl-badge">CURRENT</span>
+      </div>
       <div>
-        <div class="tl-role">Cybersecurity Research Intern (DOE SULI)</div>
-        <div class="tl-org">Pacific Northwest National Laboratory &nbsp;·&nbsp; Richland, WA</div>
+        <div class="tl-role">AI Data Trainer and Security QA Analyst</div>
+        <div class="tl-org">Handshake Software &nbsp;·&nbsp; Remote</div>
         <ul class="tl-desc">
-          <li>Built a Python and LLM pipeline for automated threat intelligence mapping on the HAGEN (Hybrid Attack Graph) project.</li>
-          <li>Mapped adversary TTPs to MITRE ATT&CK framework using large language model reasoning and structured extraction.</li>
-          <li>Produced structured intelligence outputs supporting national-level cybersecurity research.</li>
+          <li>Evaluate AI and LLM outputs against security quality criteria, identifying logic flaws, data integrity violations, and compliance gaps across training pipelines.</li>
+          <li>Apply adversarial thinking to model validation; author training documentation and lead QA reviews enforcing data governance and AI security standards.</li>
         </ul>
-        <div class="tl-highlight">&#9670; Key: Delivered end-to-end automation pipeline for MITRE ATT&CK TTP mapping using Python + LLMs.</div>
       </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-date">Teaching Assistant<br />Edmonds College</div>
+      <div class="tl-date">Sep 2025 – Apr 2026</div>
       <div>
-        <div class="tl-role">Teaching Assistant &nbsp;·&nbsp; Cisco Lab Environments</div>
+        <div class="tl-role">Networking Lab Teaching Assistant</div>
         <div class="tl-org">Edmonds College &nbsp;·&nbsp; Lynnwood, WA</div>
         <ul class="tl-desc">
-          <li>Managed and maintained Cisco lab environments used by cybersecurity and networking students.</li>
-          <li>Supported students with hands-on lab exercises covering routing, switching, and network security configurations.</li>
+          <li>Configured live Cisco router and switch environments applying VLANs, ACLs, NAT, DHCP, and routing protocols to simulate enterprise network defense scenarios.</li>
+          <li>Guided 20+ students per session through network security challenges and updated curriculum to reflect emerging threats and industry standards.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">Jun – Aug 2024</div>
+      <div>
+        <div class="tl-role">Cybersecurity Research Intern (DOE SULI)</div>
+        <div class="tl-org">Pacific Northwest National Laboratory &nbsp;·&nbsp; Remote</div>
+        <ul class="tl-desc">
+          <li>Extracted and structured threat intelligence into JSON datasets with Python and regex; mapped attack indicators to MITRE ATT&CK, improving traceability of threat graphs defending critical energy infrastructure.</li>
+          <li>Prepared adversarial datasets for the HAGEN project, supporting hybrid attack graph development for national energy sector cyber-physical defenses.</li>
+        </ul>
+        <div class="tl-highlight">&#9670; Selected as a presenter at the DOE Gold Experience Research Symposium (2024) among SULI interns across the national DOE network.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">2010 – 2021</div>
+      <div>
+        <div class="tl-role">Earlier Career — Enterprise Accounts and IT Sales</div>
+        <div class="tl-org">Bonn Healthcare &nbsp;·&nbsp; PL4D LLC / Aldrees Group &nbsp;·&nbsp; Riyadh, Saudi Arabia</div>
+        <ul class="tl-desc">
+          <li>Key Account Manager, Bonn Healthcare (2016 – 2021): managed enterprise healthcare accounts requiring strict data confidentiality, vendor compliance, and regulatory adherence.</li>
+          <li>IT Account Manager and Sales Executive, PL4D / Aldrees Group (2010 – 2016): sold enterprise IT solutions to corporate clients, building familiarity with network infrastructure, client-side security requirements, and IT procurement workflows.</li>
         </ul>
       </div>
     </div>
@@ -836,46 +910,48 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">// 03 &nbsp; Projects</div>
-  <h2 class="section-title">Technical Work</h2>
+  <h2 class="section-title">Security Projects</h2>
   <div class="projects-grid">
 
     <div class="project-card">
-      <div class="project-icon">&#127760;</div>
-      <div class="project-title">HAGEN Threat Intelligence Pipeline</div>
-      <p class="project-desc">Python and LLM pipeline built at PNNL that automatically maps adversary TTPs to MITRE ATT&CK using structured NLP extraction. Supports national-level cyber threat analysis on the Hybrid Attack Graph project.</p>
+      <div class="project-icon">&#128737;</div>
+      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Jun – Sep 2025</div>
+      <div class="project-title">Threat Detection and System Hardening</div>
+      <p class="project-desc">Ran vulnerability assessments with Nessus, Nmap, Wireshark, and Metasploit; applied hardening measures and validated remediation through follow-up scans.</p>
       <div class="project-tags">
-        <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">MITRE ATT&CK</span><span class="tag">NLP</span><span class="tag">DOE SULI</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon">&#128202;</div>
-      <div class="project-title">GSEC Open-Book Index (Excel)</div>
-      <p class="project-desc">Built an 800+ row structured Excel index spanning all four GSEC books with keyword-first naming conventions, color-coded per book, and a dedicated Lab Commands tab covering labs 1.1 through 3.4. Designed for fast retrieval under exam conditions.</p>
-      <div class="project-tags">
-        <span class="tag">Excel</span><span class="tag">GSEC</span><span class="tag">SANS</span><span class="tag">Study System</span>
+        <span class="tag">Nessus</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">Metasploit</span><span class="tag">Hardening</span>
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-icon">&#128270;</div>
-      <div class="project-title">Syslog Server Lab</div>
-      <p class="project-desc">Configured and tested a syslog server environment to capture and parse network device logs. Practiced log analysis, event correlation, and alert triage against simulated intrusion scenarios.</p>
+      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Apr – Jul 2025</div>
+      <div class="project-title">Malware Analysis via Wireshark</div>
+      <p class="project-desc">Investigated Trojan delivery via an HTTP 302 redirect; reconstructed the full attack chain and documented IOCs including malicious domains, HTTP headers, and payload signatures.</p>
       <div class="project-tags">
-        <span class="tag">Syslog</span><span class="tag">Log Analysis</span><span class="tag">Kali Linux</span><span class="tag">SIEM</span>
+        <span class="tag">Wireshark</span><span class="tag">Malware Analysis</span><span class="tag">IOCs</span><span class="tag">Attack Chain</span>
       </div>
     </div>
 
     <div class="project-card">
-      <div class="project-icon">&#128029;</div>
-      <div class="project-title">Bug Bounty Web Vuln Curriculum</div>
-      <p class="project-desc">Structured self-study curriculum covering XSS, SQL Injection, IDOR, and CSRF. Includes hands-on lab exercises and documentation of findings in structured pentest-style reports.</p>
+      <div class="project-icon">&#128196;</div>
+      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Apr – Jul 2025</div>
+      <div class="project-title">Employee Misconduct and Data Theft — Digital Forensics</div>
+      <p class="project-desc">Simulated an insider threat investigation using the FTK toolkit; recovered deleted evidence, maintained chain of custody, and authored a forensic report with policy recommendations.</p>
       <div class="project-tags">
-        <span class="tag">XSS</span><span class="tag">SQLi</span><span class="tag">IDOR</span><span class="tag">CSRF</span><span class="tag">Burp Suite</span>
+        <span class="tag">FTK</span><span class="tag">DFIR</span><span class="tag">Chain of Custody</span><span class="tag">Insider Threat</span>
       </div>
     </div>
 
-
+    <div class="project-card">
+      <div class="project-icon">&#127760;</div>
+      <div class="project-meta">Pacific Northwest National Laboratory &nbsp;·&nbsp; Jun – Aug 2024</div>
+      <div class="project-title">Hybrid Attack Graph (HAGEN)</div>
+      <p class="project-desc">Built a Python and LLM pipeline to extract structured threat intelligence and map adversary TTPs to MITRE ATT&CK for national energy sector cyber-physical defense modeling.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">MITRE ATT&CK</span><span class="tag">NLP</span><span class="tag">DOE SULI</span>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -887,9 +963,18 @@
   <div class="certs-grid">
 
     <div class="cert-card">
+      <div class="cert-icon">&#128274;</div>
+      <div>
+        <div class="cert-name">GSEC — Security Essentials</div>
+        <div class="cert-issuer">GIAC / SANS Institute</div>
+        <span class="cert-status earned">&#10003; Earned 2026</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
       <div class="cert-icon">&#127919;</div>
       <div>
-        <div class="cert-name">GFACT</div>
+        <div class="cert-name">GFACT — Foundational Cybersecurity Technologies</div>
         <div class="cert-issuer">GIAC / SANS Institute</div>
         <span class="cert-status earned">&#10003; Earned 2025</span>
       </div>
@@ -898,16 +983,7 @@
     <div class="cert-card">
       <div class="cert-icon">&#128274;</div>
       <div>
-        <div class="cert-name">GSEC</div>
-        <div class="cert-issuer">GIAC / SANS Institute</div>
-        <span class="cert-status in-progress">&#9654; In Progress — Jul 2026</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128274;</div>
-      <div>
-        <div class="cert-name">GCIH</div>
+        <div class="cert-name">GCIH — Certified Incident Handler</div>
         <div class="cert-issuer">GIAC / SANS Institute</div>
         <span class="cert-status in-progress">&#9654; Planned — Late 2026</span>
       </div>
@@ -971,7 +1047,7 @@
       <div class="cert-icon">&#128202;</div>
       <div>
         <div class="cert-name">CVSS v4.0</div>
-        <div class="cert-issuer">First.org</div>
+        <div class="cert-issuer">FIRST.org</div>
         <span class="cert-status earned">&#10003; Earned</span>
       </div>
     </div>
@@ -986,15 +1062,16 @@
   <div class="skills-grid">
 
     <div class="skill-group">
-      <div class="skill-group-title">Security Operations</div>
+      <div class="skill-group-title">Security Operations &amp; Analysis</div>
       <div class="skill-pills">
-        <span class="skill-pill">SIEM</span>
+        <span class="skill-pill">SIEM (CEF, LEEF, Sigma)</span>
         <span class="skill-pill">Log Analysis</span>
         <span class="skill-pill">Alert Triage</span>
         <span class="skill-pill">Incident Response</span>
         <span class="skill-pill">Threat Hunting</span>
-        <span class="skill-pill">Digital Forensics</span>
-        <span class="skill-pill">Wireshark</span>
+        <span class="skill-pill">Digital Forensics &amp; DFIR</span>
+        <span class="skill-pill">Threat Intel &amp; MISP</span>
+        <span class="skill-pill">IOC Identification</span>
       </div>
     </div>
 
@@ -1006,17 +1083,20 @@
         <span class="skill-pill">PICERL</span>
         <span class="skill-pill">Chain of Custody</span>
         <span class="skill-pill">Risk Assessment</span>
+        <span class="skill-pill">Defense in Depth</span>
+        <span class="skill-pill">Least Privilege</span>
       </div>
     </div>
 
     <div class="skill-group">
-      <div class="skill-group-title">Programming &amp; Scripting</div>
+      <div class="skill-group-title">Programming &amp; Automation</div>
       <div class="skill-pills">
         <span class="skill-pill">Python</span>
         <span class="skill-pill">Bash</span>
+        <span class="skill-pill">PowerShell</span>
         <span class="skill-pill">SQL</span>
         <span class="skill-pill">Regex</span>
-        <span class="skill-pill">HTML/CSS</span>
+        <span class="skill-pill">JSON Scripting</span>
       </div>
     </div>
 
@@ -1029,30 +1109,33 @@
         <span class="skill-pill">Burp Suite</span>
         <span class="skill-pill">Kali Linux</span>
         <span class="skill-pill">Metasploit</span>
-        <span class="skill-pill">Autopsy</span>
+        <span class="skill-pill">Nessus / OpenVAS</span>
+        <span class="skill-pill">tcpdump</span>
       </div>
     </div>
 
     <div class="skill-group">
       <div class="skill-group-title">Cryptography &amp; Forensics</div>
       <div class="skill-pills">
+        <span class="skill-pill">PKI / TLS</span>
         <span class="skill-pill">AES / DES / RSA</span>
-        <span class="skill-pill">ECC</span>
-        <span class="skill-pill">Hash Functions</span>
+        <span class="skill-pill">Hashing</span>
+        <span class="skill-pill">Integrity Checks</span>
+        <span class="skill-pill">FTK Imager / Autopsy</span>
         <span class="skill-pill">MACB Timestamps</span>
-        <span class="skill-pill">Post-Quantum</span>
       </div>
     </div>
 
     <div class="skill-group">
-      <div class="skill-group-title">Networking</div>
+      <div class="skill-group-title">Networking &amp; Infrastructure</div>
       <div class="skill-pills">
         <span class="skill-pill">TCP/IP</span>
-        <span class="skill-pill">DNS / DHCP</span>
+        <span class="skill-pill">VLANs / ACLs</span>
+        <span class="skill-pill">NAT / DHCP</span>
         <span class="skill-pill">Routing &amp; Switching</span>
-        <span class="skill-pill">VPN</span>
-        <span class="skill-pill">Firewall Config</span>
-        <span class="skill-pill">Syslog</span>
+        <span class="skill-pill">Active Directory</span>
+        <span class="skill-pill">Windows &amp; Linux Hardening</span>
+        <span class="skill-pill">Docker</span>
       </div>
     </div>
 
@@ -1109,11 +1192,9 @@
 
     <div class="tool-card">
       <div class="tool-icon">&#128196;</div>
-      <div class="tool-name">FTK Toolkit</div>
+      <div class="tool-name">Autopsy</div>
       <div class="tool-cat">Digital Forensics</div>
     </div>
-
-
 
     <div class="tool-card">
       <div class="tool-icon">&#128295;</div>
@@ -1134,9 +1215,9 @@
     </div>
 
     <div class="tool-card">
-      <div class="tool-icon">&#128249;</div>
-      <div class="tool-name">Packet Tracer</div>
-      <div class="tool-cat">Network Simulation</div>
+      <div class="tool-icon">&#128220;</div>
+      <div class="tool-name">PowerShell</div>
+      <div class="tool-cat">Automation & Triage</div>
     </div>
 
     <div class="tool-card">
@@ -1157,16 +1238,43 @@
       <div class="tool-cat">IAM / Windows</div>
     </div>
 
+    <div class="tool-card">
+      <div class="tool-icon">&#128249;</div>
+      <div class="tool-name">Packet Tracer</div>
+      <div class="tool-cat">Network Simulation</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// 07 &nbsp; Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-degree">Associate of Applied Science — Cyber Defense &amp; Digital Forensics</div>
+      <div class="edu-school">Edmonds College &nbsp;·&nbsp; Graduated 2024</div>
+      <div class="edu-detail">Coursework: network security, incident response, ethical hacking, penetration testing, digital forensics, cryptography, and Cisco networking.</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor's Degree — Computer Science</div>
+      <div class="edu-school">Suez Canal University &nbsp;·&nbsp; Graduated 2008</div>
+      <div class="edu-detail">Foundation in computer science fundamentals, programming, and systems — the technical grounding for a later transition into cybersecurity.</div>
+    </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">// 07 &nbsp; Contact</div>
+  <div class="section-label">// 08 &nbsp; Contact</div>
   <h2 class="section-title">Get In Touch</h2>
   <div class="contact-wrapper">
     <div>
-      <p class="contact-intro">I'm actively seeking cybersecurity analyst, SOC, and adjunct faculty roles. If you're working on something interesting in the security space or want to connect, reach out directly.</p>
+      <p class="contact-intro">I'm actively seeking SOC analyst, incident responder, and threat intelligence roles, on-site or remote. If you're working on something interesting in the security space or want to connect, reach out directly.</p>
       <div class="contact-links">
         <a href="mailto:Yrmabdelkader@gmail.com" class="contact-link">
           <span class="cl-icon">&#9993;</span>
@@ -1198,13 +1306,11 @@
       </div>
       <ul class="avail-roles">
         <li>SOC Analyst (Tier 1 / Tier 2)</li>
-        <li>Threat Intelligence Analyst</li>
         <li>Incident Responder (DFIR)</li>
-        <li>Junior Penetration Tester</li>
+        <li>Threat Intelligence Analyst</li>
         <li>Threat Hunter</li>
-        <li>IT Support Specialist</li>
+        <li>Junior Penetration Tester</li>
         <li>Vulnerability Analyst</li>
-        <li>Cybersecurity Operations Center</li>
         <li>Remote / Pacific Northwest / Open to Relocation</li>
       </ul>
     </div>

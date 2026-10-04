@@ -1,1363 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Abdelkader | Cybersecurity Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:       #0b0f14;
-      --surface:  #131920;
-      --card:     #1a2232;
-      --border:   #1e2d42;
-      --accent:   #1a7fc1;
-      --teal:     #0ab5c8;
-      --navy:     #0d2b4e;
-      --text:     #e2eaf4;
-      --muted:    #7a92aa;
-      --dim:      #3a5068;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-display);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── GRID OVERLAY (signature element) ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.18;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 60px;
-      background: rgba(11,15,20,0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--teal);
-      letter-spacing: 0.04em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--teal); }
-
-    /* ── SECTIONS ── */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--teal);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    h2.section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 80px;
-      max-width: 1100px;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--teal);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 1px;
-      background: var(--teal);
-    }
-
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    h1 span {
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--accent);
-    }
-
-    .hero-tagline {
-      font-family: var(--font-mono);
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      color: var(--muted);
-      margin: 1.5rem 0 2rem;
-      max-width: 640px;
-      line-height: 1.8;
-    }
-
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 680px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      border: 1px solid var(--dim);
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      margin-top: 4rem;
-      overflow: hidden;
-    }
-
-    .stat-item {
-      background: var(--surface);
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: var(--font-mono);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--teal);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.25rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
-    }
-
-    .about-text p strong { color: var(--text); }
-
-    .about-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .meta-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem 1.5rem;
-    }
-
-    .meta-item .meta-key {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    .meta-item .meta-val {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    /* ── EXPERIENCE ── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .timeline-item:last-child { border-bottom: none; }
-
-    .tl-date {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      padding-top: 0.2rem;
-      line-height: 1.5;
-    }
-
-    .tl-badge {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.2rem 0.5rem;
-      background: var(--navy);
-      border: 1px solid var(--accent);
-      border-radius: 3px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.06em;
-    }
-
-    .tl-role {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .tl-org {
-      font-size: 0.88rem;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .tl-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .tl-desc li { margin-left: 1.25rem; margin-bottom: 0.35rem; }
-
-    .tl-highlight {
-      margin-top: 0.75rem;
-      padding: 0.6rem 1rem;
-      background: var(--navy);
-      border-left: 2px solid var(--teal);
-      border-radius: 0 4px 4px 0;
-      font-size: 0.85rem;
-      color: var(--text);
-    }
-
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--teal));
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-icon {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-meta {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--teal);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .tag {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      padding: 0.2rem 0.55rem;
-      background: var(--navy);
-      color: var(--teal);
-      border-radius: 3px;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── CERTIFICATIONS ── */
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .cert-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: border-color 0.2s;
-    }
-
-    .cert-card:hover { border-color: var(--accent); }
-
-    .cert-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: var(--navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .cert-name {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .cert-issuer {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-    }
-
-    .cert-status {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      margin-top: 0.35rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 2px;
-      display: inline-block;
-    }
-
-    .cert-status.earned { background: rgba(10,181,200,0.12); color: var(--teal); }
-    .cert-status.in-progress { background: rgba(26,127,193,0.15); color: var(--accent); }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-group {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.5rem;
-    }
-
-    .skill-group-title {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .skill-pill {
-      font-size: 0.8rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--surface);
-      border: 1px solid var(--dim);
-      border-radius: 4px;
-      color: var(--text);
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .skill-pill:hover { border-color: var(--teal); color: var(--teal); }
-
-    /* ── TOOLS ── */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 1rem;
-    }
-
-    .tool-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem 1rem;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .tool-card:hover {
-      border-color: var(--teal);
-      transform: translateY(-2px);
-    }
-
-    .tool-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .tool-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .tool-cat {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── EDUCATION ── */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
-    }
-
-    .edu-card:hover { border-color: var(--accent); }
-
-    .edu-degree {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .edu-school {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--teal);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.75rem;
-    }
-
-    .edu-detail {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ── CONTACT ── */
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .contact-intro {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 0.9rem 1.25rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.9rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .contact-link:hover { border-color: var(--teal); color: var(--teal); }
-
-    .contact-link .cl-icon {
-      font-size: 1.1rem;
-      width: 24px;
-      text-align: center;
-    }
-
-    .contact-link .cl-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      display: block;
-      margin-bottom: 0.1rem;
-    }
-
-    .contact-availability {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 2rem;
-    }
-
-    .avail-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .avail-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .avail-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .avail-roles {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .avail-roles li {
-      font-size: 0.875rem;
-      color: var(--muted);
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .avail-roles li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--dim);
-    }
-
-    footer span { color: var(--teal); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 0 1.25rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.7rem; }
-      section { padding: 4rem 1.25rem; }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
-      .tl-date { font-size: 0.7rem; }
-      .contact-wrapper { grid-template-columns: 1fr; }
-      h1 { letter-spacing: -0.01em; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohamed Abdelkader | SOC Analyst, Incident Response, DFIR</title>
+<meta name="description" content="Mohamed Abdelkader, SOC analyst focused on incident response and digital forensics. GIAC GSEC, GFACT, CCNA, ISC2 CC. Bothell, WA, open to relocation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1522;
+    --raised: #131e2f;
+    --line: #22324a;
+    --text: #e8edf4;
+    --muted: #9aa8bb;
+    --teal: #4fd1c5;
+    --amber: #f2a94b;
+    --sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* Navigation */
+  header.top { position: sticky; top: 0; z-index: 10; background: rgba(13, 21, 34, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+  .brand { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -0.01em; }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  nav a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; padding: 96px 0 80px; }
+  .hero h1 { font-size: clamp(42px, 6vw, 72px); line-height: 1; letter-spacing: -0.03em; font-weight: 700; }
+  .hero .role { font-size: clamp(20px, 2.4vw, 26px); color: var(--teal); margin-top: 18px; font-weight: 500; }
+  .hero p.intro { color: var(--muted); max-width: 34em; margin-top: 22px; font-size: 18px; }
+  .creds { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; list-style: none; }
+  .creds li { border: 1.5px solid var(--teal); border-radius: 6px; padding: 6px 12px; font-size: 15px; font-weight: 500; }
+  .creds li.solid { background: var(--teal); color: var(--bg); }
+  .creds li.pending { border-style: dashed; border-color: var(--muted); color: var(--muted); }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 6px; font-weight: 500; text-decoration: none; font-size: 16px; }
+  .btn.primary { background: var(--teal); color: var(--bg); }
+  .btn.primary:hover { background: #7ae0d7; }
+  .btn.ghost { border: 1.5px solid var(--line); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--teal); }
+  .graph { width: 100%; height: auto; }
+  .graph .path { stroke-dasharray: 6 5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .graph .trace { stroke-dasharray: 420; stroke-dashoffset: 420; animation: trace 2.4s ease-out 0.4s forwards; }
+    .graph .contain { opacity: 0; animation: appear 0.5s ease-out 2.6s forwards; }
+    @keyframes trace { to { stroke-dashoffset: 0; } }
+    @keyframes appear { to { opacity: 1; } }
+  }
+
+  /* Sections */
+  section.block { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 72px 0; border-top: 1px solid var(--line); }
+  section.block > h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; position: sticky; top: 96px; align-self: start; }
+  .lead { color: var(--muted); max-width: 40em; }
+  .lead + .lead { margin-top: 16px; }
+  .lead strong { color: var(--text); font-weight: 500; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .facts dt { color: var(--muted); font-size: 14px; }
+  .facts dd { margin-top: 4px; }
+
+  /* Experience */
+  h3.group { font-size: 15px; color: var(--muted); font-weight: 500; margin: 0 0 8px; }
+  h3.group:not(:first-child) { margin-top: 48px; }
+  .job { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .job:last-child { border-bottom: 0; }
+  .job header { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .job h4 { font-size: 19px; font-weight: 500; }
+  .job .when { color: var(--muted); font-size: 15px; white-space: nowrap; }
+  .job .where { color: var(--teal); font-size: 15px; margin-top: 2px; }
+  .job ul { margin: 12px 0 0 1.1em; color: var(--muted); }
+  .job li { margin-top: 6px; }
+  .job li::marker { color: var(--teal); }
+  .note { margin-top: 14px; padding: 12px 16px; border-left: 3px solid var(--amber); background: var(--raised); border-radius: 0 6px 6px 0; }
+
+  /* Projects */
+  .project { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .project:last-child { border-bottom: 0; }
+  .project h4 { font-size: 18px; font-weight: 500; }
+  .project .when { color: var(--muted); font-size: 15px; text-align: right; white-space: nowrap; }
+  .project .src { color: var(--teal); font-size: 15px; grid-column: 1 / -1; }
+  .project p { color: var(--muted); grid-column: 1 / -1; margin-top: 6px; max-width: 46em; }
+  .project .tools { grid-column: 1 / -1; font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .project .tools b { color: var(--text); font-weight: 500; }
+
+  /* Certifications and skills */
+  table.certs { width: 100%; border-collapse: collapse; }
+  table.certs td { padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.certs td:last-child { text-align: right; color: var(--muted); white-space: nowrap; padding-left: 16px; }
+  table.certs .issuer { display: block; color: var(--muted); font-size: 14px; }
+  table.certs tr.key td:first-child { font-weight: 500; }
+  .more { color: var(--muted); margin-top: 18px; }
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+  .skills dt { font-weight: 500; }
+  .skills dd { color: var(--muted); margin-top: 6px; font-size: 16px; }
+
+  /* Education */
+  .school { padding: 16px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 2px 24px; }
+  .school:last-child { border-bottom: 0; }
+  .school h4 { font-size: 18px; font-weight: 500; }
+  .school .when { color: var(--muted); font-size: 15px; white-space: nowrap; }
+  .school p { color: var(--muted); grid-column: 1 / -1; font-size: 16px; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact ul { list-style: none; }
+  .contact li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .contact li span { color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 64px 0 56px; }
+    .graph { max-width: 440px; }
+    section.block { grid-template-columns: 1fr; gap: 20px; padding: 56px 0; }
+    section.block > h2 { position: static; }
+    .facts, .skills, .contact { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">mo@portfolio:~$</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certs">Certs</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-eyebrow">SANS Cybersecurity Fellow &nbsp;·&nbsp; GSEC · GFACT Certified</div>
-  <h1>Mohamed<br /><span>Abdelkader</span></h1>
-  <p class="hero-tagline">
-    // SOC Analyst &nbsp;·&nbsp; Incident Responder &nbsp;·&nbsp; Threat Intelligence Analyst &nbsp;·&nbsp; Bothell, WA &nbsp;·&nbsp; Open to Relocation
-  </p>
-  <p class="hero-bio">
-    GIAC-certified cybersecurity professional (GSEC, GFACT) with hands-on lab and research experience across threat intelligence, digital forensics, incident response, and network security. Completed a DOE SULI internship at Pacific Northwest National Laboratory, structuring cyber threat intelligence and mapping adversary TTPs to MITRE ATT&CK for hybrid attack-graph modeling. GCIH planned for late 2026.
-  </p>
-  <div class="hero-cta">
-    <a href="mailto:Yrmabdelkader@gmail.com" class="btn-primary">&#9993; Get In Touch</a>
-    <a href="#experience" class="btn-ghost">View Experience &#8595;</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Mohamed Abdelkader</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="stats-bar">
-    <div class="stat-item">
-      <span class="stat-number" data-target="10">0</span>
-      <div class="stat-label">Certifications</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-target="4">0</span>
-      <div class="stat-label">Security Projects</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">GSEC</span>
-      <div class="stat-label">Earned 2026</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">SOC</span>
-      <div class="stat-label">Target Role</div>
-    </div>
-  </div>
-</section>
+<main class="wrap">
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">// 01 &nbsp; About</div>
-  <h2 class="section-title">Background</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a GIAC-certified cybersecurity professional based in <strong>Bothell, WA</strong>, with hands-on lab and research experience across threat intelligence, digital forensics, incident response, and network security. I transitioned into security from a background in enterprise accounts and IT sales, which sharpened my ability to translate complex technical findings into clear business risk narratives.</p>
-      <p>I hold an <strong>AAS in Cyber Defense and Digital Forensics</strong> from Edmonds College and a <strong>B.S. in Computer Science</strong> from Suez Canal University. As a <strong>SANS Fellow</strong>, I earned <strong>GFACT (2025)</strong> and <strong>GSEC (2026)</strong> after completing SEC401, with <strong>GCIH</strong> planned for late 2026.</p>
-      <p>My work at <strong>Pacific Northwest National Laboratory</strong> as a DOE SULI intern involved building a Python and LLM pipeline for threat intelligence mapping on the HAGEN project, directly connecting adversary TTPs to MITRE ATT&CK. That experience anchors my approach: rigorous, evidence-based, and automation-forward.</p>
-    </div>
-    <div class="about-meta">
-      <div class="meta-item">
-        <div class="meta-key">Location</div>
-        <div class="meta-val">Bothell, WA &nbsp;·&nbsp; Open to Relocation</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-key">Education</div>
-        <div class="meta-val">AAS Cyber Defense &amp; Digital Forensics, Edmonds College<br />B.S. Computer Science, Suez Canal University</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-key">Current Focus</div>
-        <div class="meta-val">SOC Analyst &amp; Incident Response Roles<br />AI Data Training &amp; Security QA at Handshake Software</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-key">Contact</div>
-        <div class="meta-val">Yrmabdelkader@gmail.com<br />(206) 676-2062</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">// 02 &nbsp; Experience</div>
-  <h2 class="section-title">Professional History</h2>
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="tl-date">
-        Jan 2026 – Present<br />
-        <span class="tl-badge">CURRENT</span>
-      </div>
-      <div>
-        <div class="tl-role">Cybersecurity Fellow</div>
-        <div class="tl-org">SANS Technology Institute &nbsp;·&nbsp; Remote</div>
-        <ul class="tl-desc">
-          <li>Earned GSEC (2026) after completing SEC401: enterprise log management and SIEM operations, defense in depth, network segmentation, Windows and Linux hardening, PowerShell automation, cryptography and PKI, IAM and access control, digital forensics, malware analysis, and web application security.</li>
-          <li>Earned GFACT (2025); GCIH planned for late 2026, aligning the certification stack to the SOC and incident response track.</li>
-          <li>Completed lab work in penetration testing methodology, Wireshark traffic analysis, and adversary simulation with Kali Linux tooling.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="tl-date">
-        Jan 2026 – Present<br />
-        <span class="tl-badge">CURRENT</span>
-      </div>
-      <div>
-        <div class="tl-role">AI Data Trainer and Security QA Analyst</div>
-        <div class="tl-org">Handshake Software &nbsp;·&nbsp; Remote</div>
-        <ul class="tl-desc">
-          <li>Evaluate AI and LLM outputs against security quality criteria, identifying logic flaws, data integrity violations, and compliance gaps across training pipelines.</li>
-          <li>Apply adversarial thinking to model validation; author training documentation and lead QA reviews enforcing data governance and AI security standards.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="tl-date">Sep 2025 – Apr 2026</div>
-      <div>
-        <div class="tl-role">Networking Lab Teaching Assistant</div>
-        <div class="tl-org">Edmonds College &nbsp;·&nbsp; Lynnwood, WA</div>
-        <ul class="tl-desc">
-          <li>Configured live Cisco router and switch environments applying VLANs, ACLs, NAT, DHCP, and routing protocols to simulate enterprise network defense scenarios.</li>
-          <li>Guided 20+ students per session through network security challenges and updated curriculum to reflect emerging threats and industry standards.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="tl-date">Jun – Aug 2024</div>
-      <div>
-        <div class="tl-role">Cybersecurity Research Intern (DOE SULI)</div>
-        <div class="tl-org">Pacific Northwest National Laboratory &nbsp;·&nbsp; Remote</div>
-        <ul class="tl-desc">
-          <li>Extracted and structured threat intelligence into JSON datasets with Python and regex; mapped attack indicators to MITRE ATT&CK, improving traceability of threat graphs defending critical energy infrastructure.</li>
-          <li>Prepared adversarial datasets for the HAGEN project, supporting hybrid attack graph development for national energy sector cyber-physical defenses.</li>
-        </ul>
-        <div class="tl-highlight">&#9670; Selected as a presenter at the DOE Gold Experience Research Symposium (2024) among SULI interns across the national DOE network.</div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="tl-date">2010 – 2021</div>
-      <div>
-        <div class="tl-role">Earlier Career — Enterprise Accounts and IT Sales</div>
-        <div class="tl-org">Bonn Healthcare &nbsp;·&nbsp; PL4D LLC / Aldrees Group &nbsp;·&nbsp; Riyadh, Saudi Arabia</div>
-        <ul class="tl-desc">
-          <li>Key Account Manager, Bonn Healthcare (2016 – 2021): managed enterprise healthcare accounts requiring strict data confidentiality, vendor compliance, and regulatory adherence.</li>
-          <li>IT Account Manager and Sales Executive, PL4D / Aldrees Group (2010 – 2016): sold enterprise IT solutions to corporate clients, building familiarity with network infrastructure, client-side security requirements, and IT procurement workflows.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">// 03 &nbsp; Projects</div>
-  <h2 class="section-title">Security Projects</h2>
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <div class="project-icon">&#128737;</div>
-      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Jun – Sep 2025</div>
-      <div class="project-title">Threat Detection and System Hardening</div>
-      <p class="project-desc">Ran vulnerability assessments with Nessus, Nmap, Wireshark, and Metasploit; applied hardening measures and validated remediation through follow-up scans.</p>
-      <div class="project-tags">
-        <span class="tag">Nessus</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">Metasploit</span><span class="tag">Hardening</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon">&#128270;</div>
-      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Apr – Jul 2025</div>
-      <div class="project-title">Malware Analysis via Wireshark</div>
-      <p class="project-desc">Investigated Trojan delivery via an HTTP 302 redirect; reconstructed the full attack chain and documented IOCs including malicious domains, HTTP headers, and payload signatures.</p>
-      <div class="project-tags">
-        <span class="tag">Wireshark</span><span class="tag">Malware Analysis</span><span class="tag">IOCs</span><span class="tag">Attack Chain</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon">&#128196;</div>
-      <div class="project-meta">Edmonds College &nbsp;·&nbsp; Apr – Jul 2025</div>
-      <div class="project-title">Employee Misconduct and Data Theft — Digital Forensics</div>
-      <p class="project-desc">Simulated an insider threat investigation using the FTK toolkit; recovered deleted evidence, maintained chain of custody, and authored a forensic report with policy recommendations.</p>
-      <div class="project-tags">
-        <span class="tag">FTK</span><span class="tag">DFIR</span><span class="tag">Chain of Custody</span><span class="tag">Insider Threat</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon">&#127760;</div>
-      <div class="project-meta">Pacific Northwest National Laboratory &nbsp;·&nbsp; Jun – Aug 2024</div>
-      <div class="project-title">Hybrid Attack Graph (HAGEN)</div>
-      <p class="project-desc">Built a Python and LLM pipeline to extract structured threat intelligence and map adversary TTPs to MITRE ATT&CK for national energy sector cyber-physical defense modeling.</p>
-      <div class="project-tags">
-        <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">MITRE ATT&CK</span><span class="tag">NLP</span><span class="tag">DOE SULI</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certs">
-  <div class="section-label">// 04 &nbsp; Certifications</div>
-  <h2 class="section-title">Credentials</h2>
-  <div class="certs-grid">
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128274;</div>
-      <div>
-        <div class="cert-name">GSEC — Security Essentials</div>
-        <div class="cert-issuer">GIAC / SANS Institute</div>
-        <span class="cert-status earned">&#10003; Earned 2026</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#127919;</div>
-      <div>
-        <div class="cert-name">GFACT — Foundational Cybersecurity Technologies</div>
-        <div class="cert-issuer">GIAC / SANS Institute</div>
-        <span class="cert-status earned">&#10003; Earned 2025</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128274;</div>
-      <div>
-        <div class="cert-name">GCIH — Certified Incident Handler</div>
-        <div class="cert-issuer">GIAC / SANS Institute</div>
-        <span class="cert-status in-progress">&#9654; Planned — Late 2026</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#127981;</div>
-      <div>
-        <div class="cert-name">CC — Certified in Cybersecurity</div>
-        <div class="cert-issuer">(ISC)²</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128187;</div>
-      <div>
-        <div class="cert-name">CCNA: Switching, Routing &amp; Wireless</div>
-        <div class="cert-issuer">Cisco — Earned 2024</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128187;</div>
-      <div>
-        <div class="cert-name">CCNA: Enterprise Networking, Security &amp; Automation</div>
-        <div class="cert-issuer">Cisco — Earned 2024</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128187;</div>
-      <div>
-        <div class="cert-name">CCST — Cybersecurity &amp; Networking</div>
-        <div class="cert-issuer">Cisco</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128737;</div>
-      <div>
-        <div class="cert-name">Certified AI Data Security Specialist</div>
-        <div class="cert-issuer">Proofpoint</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128270;</div>
-      <div>
-        <div class="cert-name">Vulnerability Scanning with Nessus</div>
-        <div class="cert-issuer">Cybersecurity Academy</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-icon">&#128202;</div>
-      <div>
-        <div class="cert-name">CVSS v4.0</div>
-        <div class="cert-issuer">FIRST.org</div>
-        <span class="cert-status earned">&#10003; Earned</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">// 05 &nbsp; Skills</div>
-  <h2 class="section-title">Technical Capabilities</h2>
-  <div class="skills-grid">
-
-    <div class="skill-group">
-      <div class="skill-group-title">Security Operations &amp; Analysis</div>
-      <div class="skill-pills">
-        <span class="skill-pill">SIEM (CEF, LEEF, Sigma)</span>
-        <span class="skill-pill">Log Analysis</span>
-        <span class="skill-pill">Alert Triage</span>
-        <span class="skill-pill">Incident Response</span>
-        <span class="skill-pill">Threat Hunting</span>
-        <span class="skill-pill">Digital Forensics &amp; DFIR</span>
-        <span class="skill-pill">Threat Intel &amp; MISP</span>
-        <span class="skill-pill">IOC Identification</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Frameworks &amp; GRC</div>
-      <div class="skill-pills">
-        <span class="skill-pill">MITRE ATT&CK</span>
-        <span class="skill-pill">NIST CSF</span>
-        <span class="skill-pill">PICERL</span>
-        <span class="skill-pill">Chain of Custody</span>
-        <span class="skill-pill">Risk Assessment</span>
-        <span class="skill-pill">Defense in Depth</span>
-        <span class="skill-pill">Least Privilege</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Programming &amp; Automation</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">Bash</span>
-        <span class="skill-pill">PowerShell</span>
-        <span class="skill-pill">SQL</span>
-        <span class="skill-pill">Regex</span>
-        <span class="skill-pill">JSON Scripting</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Security Tooling</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Nmap</span>
-        <span class="skill-pill">Nikto</span>
-        <span class="skill-pill">Gobuster</span>
-        <span class="skill-pill">Burp Suite</span>
-        <span class="skill-pill">Kali Linux</span>
-        <span class="skill-pill">Metasploit</span>
-        <span class="skill-pill">Nessus / OpenVAS</span>
-        <span class="skill-pill">tcpdump</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Cryptography &amp; Forensics</div>
-      <div class="skill-pills">
-        <span class="skill-pill">PKI / TLS</span>
-        <span class="skill-pill">AES / DES / RSA</span>
-        <span class="skill-pill">Hashing</span>
-        <span class="skill-pill">Integrity Checks</span>
-        <span class="skill-pill">FTK Imager / Autopsy</span>
-        <span class="skill-pill">MACB Timestamps</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Networking &amp; Infrastructure</div>
-      <div class="skill-pills">
-        <span class="skill-pill">TCP/IP</span>
-        <span class="skill-pill">VLANs / ACLs</span>
-        <span class="skill-pill">NAT / DHCP</span>
-        <span class="skill-pill">Routing &amp; Switching</span>
-        <span class="skill-pill">Active Directory</span>
-        <span class="skill-pill">Windows &amp; Linux Hardening</span>
-        <span class="skill-pill">Docker</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TOOLS -->
-<section id="tools">
-  <div class="section-label">// 06 &nbsp; Tools & Platforms</div>
-  <h2 class="section-title">Arsenal</h2>
-  <div class="tools-grid">
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128270;</div>
-      <div class="tool-name">Wireshark</div>
-      <div class="tool-cat">Packet Analysis</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#127758;</div>
-      <div class="tool-name">Nmap</div>
-      <div class="tool-cat">Network Recon</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128029;</div>
-      <div class="tool-name">Kali Linux</div>
-      <div class="tool-cat">Pentesting OS</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128737;</div>
-      <div class="tool-name">Metasploit</div>
-      <div class="tool-cat">Exploitation</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128247;</div>
-      <div class="tool-name">FTK Imager</div>
-      <div class="tool-cat">Forensic Imaging</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128269;</div>
-      <div class="tool-name">Nessus</div>
-      <div class="tool-cat">Vulnerability Scan</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128274;</div>
-      <div class="tool-name">Burp Suite</div>
-      <div class="tool-cat">Web App Testing</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128196;</div>
-      <div class="tool-name">Autopsy</div>
-      <div class="tool-cat">Digital Forensics</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128295;</div>
-      <div class="tool-name">Gobuster</div>
-      <div class="tool-cat">Directory Brute-force</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128187;</div>
-      <div class="tool-name">Nikto</div>
-      <div class="tool-cat">Web Scanner</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128640;</div>
-      <div class="tool-name">Python</div>
-      <div class="tool-cat">Scripting & Automation</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128220;</div>
-      <div class="tool-name">PowerShell</div>
-      <div class="tool-cat">Automation & Triage</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#127959;</div>
-      <div class="tool-name">VMware</div>
-      <div class="tool-cat">Virtualization</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128260;</div>
-      <div class="tool-name">Docker</div>
-      <div class="tool-cat">Containerization</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128203;</div>
-      <div class="tool-name">Active Directory</div>
-      <div class="tool-cat">IAM / Windows</div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-icon">&#128249;</div>
-      <div class="tool-name">Packet Tracer</div>
-      <div class="tool-cat">Network Simulation</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">// 07 &nbsp; Education</div>
-  <h2 class="section-title">Academic Background</h2>
-  <div class="edu-grid">
-
-    <div class="edu-card">
-      <div class="edu-degree">Associate of Applied Science — Cyber Defense &amp; Digital Forensics</div>
-      <div class="edu-school">Edmonds College &nbsp;·&nbsp; Graduated 2026</div>
-      <div class="edu-detail">Coursework: network security, incident response, ethical hacking, penetration testing, digital forensics, cryptography, and Cisco networking.</div>
-    </div>
-
-    <div class="edu-card">
-      <div class="edu-degree">Bachelor's Degree — Computer Science</div>
-      <div class="edu-school">Suez Canal University &nbsp;·&nbsp; Graduated 2008</div>
-      <div class="edu-detail">Foundation in computer science fundamentals, programming, and systems — the technical grounding for a later transition into cybersecurity.</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">// 08 &nbsp; Contact</div>
-  <h2 class="section-title">Get In Touch</h2>
-  <div class="contact-wrapper">
+  <section class="hero" aria-labelledby="name">
     <div>
-      <p class="contact-intro">I'm actively seeking SOC analyst, incident responder, and threat intelligence roles, on-site or remote. If you're working on something interesting in the security space or want to connect, reach out directly.</p>
-      <div class="contact-links">
-        <a href="mailto:Yrmabdelkader@gmail.com" class="contact-link">
-          <span class="cl-icon">&#9993;</span>
-          <div>
-            <span class="cl-label">Email</span>
-            Yrmabdelkader@gmail.com
-          </div>
-        </a>
-        <a href="tel:2066762062" class="contact-link">
-          <span class="cl-icon">&#128222;</span>
-          <div>
-            <span class="cl-label">Phone</span>
-            (206) 676-2062
-          </div>
-        </a>
-        <a href="https://linkedin.com/in/m0hamedabdelkader" target="_blank" class="contact-link">
-          <span class="cl-icon">&#128279;</span>
-          <div>
-            <span class="cl-label">LinkedIn</span>
-            linkedin.com/in/m0hamedabdelkader
-          </div>
-        </a>
+      <h1 id="name">Mohamed Abdelkader</h1>
+      <p class="role">SOC analyst for incident response and digital forensics</p>
+      <p class="intro">I triage alerts, investigate phishing and malware traffic, and turn SIEM, endpoint, and network evidence into incident timelines that teams can act on. SANS Cyber Academy fellow based in Bothell, WA, and open to relocation.</p>
+      <ul class="creds" aria-label="Certifications">
+        <li class="solid">GIAC GSEC</li>
+        <li class="solid">GIAC GFACT</li>
+        <li>CCNA</li>
+        <li>ISC2 CC</li>
+        <li class="pending">GCIH expected Dec 2026</li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary" href="mailto:yrmabdelkader@gmail.com">Email me</a>
+        <a class="btn ghost" href="Mohamed_Abdelkader_Cybersecurity_Resume.pdf" download>Download resume</a>
       </div>
     </div>
-    <div class="contact-availability">
-      <div class="avail-header">
-        <div class="avail-dot"></div>
-        <div class="avail-title">Available for new opportunities</div>
+    <svg class="graph" viewBox="0 0 460 360" fill="none" role="img" aria-label="Diagram of an intrusion path through phishing, valid accounts, and remote services, ending at a contained host">
+      <g stroke="#22324a" stroke-width="1.5">
+        <line x1="140" y1="140" x2="240" y2="50"/><line x1="240" y1="50" x2="380" y2="80"/>
+        <line x1="300" y1="170" x2="420" y2="240"/><line x1="140" y1="140" x2="110" y2="270"/>
+        <line x1="110" y1="270" x2="250" y2="300"/><line x1="250" y1="300" x2="300" y2="170"/>
+        <line x1="420" y1="240" x2="250" y2="300"/><line x1="240" y1="50" x2="300" y2="170"/>
+      </g>
+      <g fill="#22324a"><circle cx="240" cy="50" r="5"/><circle cx="420" cy="240" r="5"/><circle cx="110" cy="270" r="4"/><circle cx="250" cy="300" r="5"/></g>
+      <polyline class="trace path" points="40,60 140,140 300,170 380,80" stroke="#f2a94b" stroke-width="2"/>
+      <g fill="#f2a94b"><circle cx="40" cy="60" r="5"/><circle cx="140" cy="140" r="5"/><circle cx="300" cy="170" r="5"/></g>
+      <g font-family="IBM Plex Mono, Courier New, monospace" font-size="13" fill="#c89150">
+        <text x="52" y="52">T1566</text><text x="150" y="132">T1078</text><text x="310" y="196">T1021</text>
+      </g>
+      <g class="contain">
+        <circle cx="380" cy="80" r="8" fill="#4fd1c5"/>
+        <circle cx="380" cy="80" r="20" stroke="#4fd1c5" stroke-width="2"/>
+        <circle cx="380" cy="80" r="32" stroke="#4fd1c5" stroke-width="1" opacity="0.4"/>
+        <text x="338" y="136" font-family="IBM Plex Mono, Courier New, monospace" font-size="13" fill="#4fd1c5">Contained</text>
+      </g>
+    </svg>
+  </section>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <div>
+      <p class="lead">I came to security from more than a decade in IT infrastructure, administering <strong>Windows Server, Active Directory, and enterprise networks</strong> for organizations in Saudi Arabia. That background gives me a defender's understanding of the systems I now investigate.</p>
+      <p class="lead">Today I'm completing the <strong>SANS Cyber Academy</strong>, where I earned GIAC GSEC and GFACT and am working toward GCIH. At <strong>Pacific Northwest National Laboratory</strong>, I mapped adversary behavior to MITRE ATT&amp;CK for energy sector defense research and presented the work at the DOE Gold Experience Research Symposium.</p>
+      <dl class="facts">
+        <div><dt>Location</dt><dd>Bothell, WA, open to relocation</dd></div>
+        <div><dt>Target roles</dt><dd>SOC, incident response, and DFIR analyst</dd></div>
+        <div><dt>Languages</dt><dd>English and Arabic</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <div>
+      <h3 class="group">Relevant experience</h3>
+
+      <article class="job">
+        <header><h4>AI Data Trainer and Security QA Fellow</h4><span class="when">Jan 2026 to present</span></header>
+        <p class="where">Handshake Software, remote</p>
+        <ul>
+          <li>Evaluate AI and LLM outputs against security, data integrity, and compliance criteria, documenting logic flaws and quality gaps that drive consistent training decisions.</li>
+          <li>Apply adversarial testing and regex rule checks to probe model behavior, producing reproducible findings mapped to security, data governance, and policy requirements.</li>
+          <li>Adapt Python scripts for structured data processing and author guidance that standardizes security evaluation workflows.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>Networking Lab Teaching Assistant</h4><span class="when">Oct 2025 to Mar 2026</span></header>
+        <p class="where">Edmonds College, Lynnwood, WA</p>
+        <ul>
+          <li>Configured Cisco enterprise network labs with VLANs, ACLs, NAT, DHCP, and routing protocols.</li>
+          <li>Diagnosed connectivity and access control failures, restoring intended traffic flow and reinforcing secure network design principles.</li>
+          <li>Guided 20+ students per session through networking and security exercises, translating technical concepts into practical troubleshooting steps.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>DOE SULI Cybersecurity Research Intern</h4><span class="when">Jun 2024 to Sep 2024</span></header>
+        <p class="where">Pacific Northwest National Laboratory, remote</p>
+        <ul>
+          <li>Developed a Python and regex pipeline that extracted adversary indicators and TTPs from threat intelligence reports, structured output in JSON, and mapped findings to MITRE ATT&amp;CK.</li>
+          <li>Prepared adversarial datasets for HAGEN hybrid attack graph research modeling threats to energy sector cyber physical systems.</li>
+        </ul>
+        <p class="note">Selected to present HAGEN research at the national DOE Gold Experience Research Symposium.</p>
+      </article>
+
+      <h3 class="group">IT infrastructure experience</h3>
+
+      <article class="job">
+        <header><h4>Cofounder and Technical Operations Lead</h4><span class="when">2021 to present</span></header>
+        <p class="where">Talaat App, remote</p>
+        <ul>
+          <li>Manage Apple App Store and Google Play privacy and compliance disclosures, documenting how the app collects, uses, and protects user data.</li>
+          <li>Serve as primary technical contact with Apple and Google to resolve compliance reviews and submission issues.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>System Administrator</h4><span class="when">Jan 2016 to Nov 2021</span></header>
+        <p class="where">Bonn Healthcare, Riyadh, Saudi Arabia</p>
+        <ul>
+          <li>Administered Windows Server and Active Directory for 100+ users, managing user provisioning, access permissions, and account lifecycle.</li>
+          <li>Managed endpoint protection, security patch deployment, and firewall rule configuration to reduce exposure to threats.</li>
+          <li>Configured switches, routers, DNS, DHCP, and VPN connectivity, resolving network service disruptions to maintain availability.</li>
+          <li>Monitored scheduled backups and performed file restores to support data recovery and business continuity.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>Senior IT Support Analyst</h4><span class="when">Dec 2014 to Jan 2016</span></header>
+        <p class="where">PL4D LLC, Riyadh, Saudi Arabia</p>
+        <ul>
+          <li>Resolved escalated Windows Server, Active Directory, DNS, DHCP, VPN, and email issues, restoring user access and service.</li>
+          <li>Defined technical, security, and procurement requirements for network infrastructure and software solutions, translating business needs into documented scope.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>Help Desk Analyst</h4><span class="when">Dec 2012 to Dec 2014</span></header>
+        <p class="where">Aldrees Petroleum and Transport Services Company, Riyadh, Saudi Arabia</p>
+        <ul>
+          <li>Resolved 25+ workstation, application, and network tickets per week; documented recurring faults and escalated complex incidents with detailed findings.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <header><h4>IT Support Technician</h4><span class="when">Mar 2010 to Dec 2012</span></header>
+        <p class="where">Aldrees Petroleum and Transport Services Company, Eastern Province, Saudi Arabia</p>
+        <ul>
+          <li>Administered Active Directory accounts, Group Policy, and shared folder permissions; resolved incidents through a ticketing system.</li>
+          <li>Maintained endpoint protection, deployed WSUS security updates, and supported VPN access and scheduled backups.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="projects" aria-labelledby="proj-h">
+    <h2 id="proj-h">Projects and labs</h2>
+    <div>
+      <article class="project">
+        <h4>Network forensics and intrusion detection</h4><span class="when">Feb 2026 to Aug 2026</span>
+        <span class="src">SANS Technology Institute</span>
+        <p>Correlated Zeek http.log and files.log with validated Snort 3 unified2 alerts to isolate suspicious hosts and file transfers, then built BPF filters and Linux log parsing pipelines to cut noise and speed up investigation.</p>
+        <p class="tools"><b>Tools:</b> Zeek, Snort 3, BPF, Linux</p>
+      </article>
+      <article class="project">
+        <h4>Linux hardening and timestomping investigation</h4><span class="when">Feb 2026 to Aug 2026</span>
+        <span class="src">SANS Technology Institute</span>
+        <p>Hardened Linux with yescrypt hashing, PAM pwquality, password aging, service masking, and GRUB protection, and uncovered cron persistence and anti forensics timestomping through file timestamp analysis.</p>
+        <p class="tools"><b>Tools:</b> PAM, SELinux, AppArmor, systemd, GRUB</p>
+      </article>
+      <article class="project">
+        <h4>Detection and response tooling</h4><span class="when">Hands on labs</span>
+        <span class="src">Lab work</span>
+        <p>Investigated endpoint alerts in Microsoft Defender for Endpoint, wrote Sigma detection rules, simulated attacks with Metasploit, and tracked incidents through ServiceNow ticketing.</p>
+        <p class="tools"><b>Tools:</b> Microsoft Defender for Endpoint, Sigma, Metasploit, ServiceNow</p>
+      </article>
+      <article class="project">
+        <h4>Phishing and business email compromise analysis</h4><span class="when">Nov 2025</span>
+        <span class="src">CodePath</span>
+        <p>Traced a simulated BEC incident through SMTP and packet data, identified phishing artifacts, and documented findings in an incident report.</p>
+        <p class="tools"><b>Tools:</b> Wireshark, SMTP analysis</p>
+      </article>
+      <article class="project">
+        <h4>Vulnerability assessment and system hardening</h4><span class="when">Jun 2025 to Sep 2025</span>
+        <span class="src">Edmonds College</span>
+        <p>Ran Nessus and Nmap vulnerability assessments, applied hardening controls, and validated remediation through follow up scans.</p>
+        <p class="tools"><b>Tools:</b> Nessus, Nmap, Wireshark</p>
+      </article>
+      <article class="project">
+        <h4>Malware traffic analysis</h4><span class="when">Apr 2025 to Jul 2025</span>
+        <span class="src">Edmonds College</span>
+        <p>Reconstructed an HTTP 302 redirect chain from a simulated Trojan infection to identify malicious infrastructure and network IOCs.</p>
+        <p class="tools"><b>Tools:</b> Wireshark</p>
+      </article>
+      <article class="project">
+        <h4>Insider threat and data theft investigation</h4><span class="when">Apr 2025 to Jul 2025</span>
+        <span class="src">Edmonds College</span>
+        <p>Recovered deleted evidence in a simulated misconduct case, preserved chain of custody, and authored a forensic report with policy recommendations.</p>
+        <p class="tools"><b>Tools:</b> FTK Imager, Autopsy</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="certifications" aria-labelledby="cert-h">
+    <h2 id="cert-h">Certifications</h2>
+    <div>
+      <table class="certs">
+        <tbody>
+          <tr class="key"><td>GIAC Certified Incident Handler (GCIH)<span class="issuer">GIAC, in progress</span></td><td>Expected Dec 2026</td></tr>
+          <tr class="key"><td>GIAC Security Essentials (GSEC)<span class="issuer">GIAC</span></td><td>Aug 2026</td></tr>
+          <tr class="key"><td>GIAC Foundational Cybersecurity Technologies (GFACT)<span class="issuer">GIAC</span></td><td>Apr 2026</td></tr>
+          <tr class="key"><td>Cisco Certified Network Associate (CCNA)<span class="issuer">Cisco</span></td><td>Sep 2025</td></tr>
+          <tr class="key"><td>Certified in Cybersecurity (CC)<span class="issuer">ISC2</span></td><td>Sep 2025</td></tr>
+          <tr><td>CVSS v4.0 Certificate, Vulnerability Management<span class="issuer">FIRST</span></td><td>Aug 2025</td></tr>
+        </tbody>
+      </table>
+      <p class="more">Also certified: Cisco CCST Cybersecurity, Cisco CCST Networking, Proofpoint Certified AI Data Security Specialist, and CodePath Cybersecurity 101.</p>
+
+      <h3 class="group" style="margin-top:48px">Skills</h3>
+      <dl class="skills">
+        <div><dt>SOC and incident response</dt><dd>Security monitoring, alert triage and escalation, SIEM and log analysis, Windows Event Logs, Sysmon, network traffic analysis, IOC and phishing analysis, threat intelligence, MITRE ATT&amp;CK, Sigma</dd></div>
+        <div><dt>Security tools</dt><dd>Microsoft Sentinel, Elastic Stack, Microsoft Defender for Endpoint, ServiceNow, Snort, Zeek, Wireshark, tcpdump</dd></div>
+        <div><dt>Vulnerability and forensics</dt><dd>Nmap, Nessus, OpenVAS, Metasploit, CVSS v4.0, FTK Imager, Autopsy, evidence preservation, chain of custody, incident timelines</dd></div>
+        <div><dt>Network and systems</dt><dd>Cisco routing and switching, VLANs, ACLs, NAT, DHCP, network segmentation, Windows Server, Active Directory, Linux, IAM, least privilege, system hardening</dd></div>
+        <div><dt>Scripting and platforms</dt><dd>Python, PowerShell, Bash, regex, JSON, VMware, Docker, Kali Linux</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="education" aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <div>
+      <div class="school"><h4>SANS Technology Institute</h4><span class="when">Expected Dec 2026</span><p>SANS Cyber Academy, non degree program</p></div>
+      <div class="school"><h4>City University of Seattle</h4><span class="when">Expected Mar 2027</span><p>Fundamentals of Cybersecurity Certificate. Coursework: CY 120 Foundations of Cybersecurity, CY 125 Cybersecurity I, CY 130 Cybersecurity II</p></div>
+      <div class="school"><h4>Edmonds College</h4><span class="when">Mar 2026</span><p>Associate of Applied Science, Cyber Defense and Digital Forensics, GPA 3.9</p></div>
+      <div class="school"><h4>Suez Canal University</h4><span class="when">May 2008</span><p>Bachelor of Science, Computer Science, Port Said, Egypt</p></div>
+
+      <h3 class="group" style="margin-top:48px">Professional affiliations</h3>
+      <p class="lead">Member of the High Technology Crime Investigation Association (HTCIA) and ISC2.</p>
+    </div>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <div class="contact">
+      <div>
+        <p class="lead">I'm looking for SOC analyst, incident response, and DFIR roles, on site, hybrid, or remote, and I'm open to relocating anywhere in the U.S. The fastest way to reach me is email.</p>
+        <div class="actions"><a class="btn primary" href="mailto:yrmabdelkader@gmail.com">Email me</a></div>
       </div>
-      <ul class="avail-roles">
-        <li>SOC Analyst (Tier 1 / Tier 2)</li>
-        <li>Incident Responder (DFIR)</li>
-        <li>Threat Intelligence Analyst</li>
-        <li>Threat Hunter</li>
-        <li>Junior Penetration Tester</li>
-        <li>Vulnerability Analyst</li>
-        <li>Remote / Pacific Northwest / Open to Relocation</li>
+      <ul>
+        <li><span>Email</span><a href="mailto:yrmabdelkader@gmail.com">yrmabdelkader@gmail.com</a></li>
+        <li><span>Phone</span><a href="tel:+12066762062">206.676.2062</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/mabdelkader-cybersec" target="_blank" rel="noopener">linkedin.com/in/mabdelkader-cybersec</a></li>
+        <li><span>Resume</span><a href="Mohamed_Abdelkader_Cybersecurity_Resume.pdf" download>Download PDF</a></li>
       </ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
-  &copy; 2026 <span>Mohamed Abdelkader</span> &nbsp;·&nbsp; Built with HTML/CSS &nbsp;·&nbsp; Hosted on GitHub Pages
+  <div class="wrap">&copy; 2026 Mohamed Abdelkader. Hosted on GitHub Pages.</div>
 </footer>
-
-<script>
-  // Animated counters
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = +el.dataset.target;
-      const duration = 1200;
-      const step = target / (duration / 16);
-      let current = 0;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.round(current);
-        if (current >= target) clearInterval(timer);
-      }, 16);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-
-  // Scroll-based nav highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--teal)' : '';
-    });
-  });
-</script>
 
 </body>
 </html>
